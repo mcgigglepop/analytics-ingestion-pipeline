@@ -1,0 +1,24 @@
+{
+    "name": "game-analytics-events-processing",
+    "description": "The events processor microservice for the game analytics pipeline solution",
+    "main": "index.js",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "ajv": "*",
+        "aws-sdk": "*",
+        "moment": "*",
+        "node-cache": "*",
+        "underscore": "*"
+    },
+    "devDependencies": {
+        "aws-sdk": "*",
+        "npm-run-all": "*"
+    },
+    "scripts": {
+        "build:init": "rm -rf package-lock.json && rm -rf dist && rm -rf node_modules",
+        "build:zip": "zip -rq events-processing.zip .",
+        "build:dist": "mkdir dist && mv events-processing.zip dist/",
+        "build": "npm run build:init && npm install --production && npm run build:zip && npm run build:dist"
+    }
+}

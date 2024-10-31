@@ -1,0 +1,13 @@
+{
+  "name": "playtester",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "cd web-app && npm run start",
+    "build": "python build.py",
+    "build.logic": "python build.py --business_logic",
+    "build.infrastructure": "python build.py --infrastructure",
+    "deploy.bootstrap": "cd infrastructure && npm install",
+    "deploy": "cd infrastructure && cdk deploy --all --require-approval never",
+    "destroy": "cd infrastructure && cdk destroy -- -c stack_name=\"${STACK_NAME:-}\" --all"
+  }
+}
