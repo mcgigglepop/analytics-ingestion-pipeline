@@ -1,0 +1,18 @@
+service: ${self:custom.project_name}
+frameworkVersion: "~3.26.0"
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ${self:custom.region}
+
+custom:
+  account: ${env:AWS_ACCOUNT, "dev"}
+  project_name: ${self:custom.service_name}-${env:AWS_ACCOUNT}
+  service_name: ${file(serverless.env.yaml):service_name}
+  region: ${opt:region, env:AWS_DEFAULT_REGION, 'us-west-2'}
+  apiGatewayStageName: "live"
+
+resources:
+  - ${file(serverless-resources.yaml)}
